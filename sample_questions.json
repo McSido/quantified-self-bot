@@ -1,0 +1,9 @@
+[{
+        "question": "How would you describe your mood today?",
+        "options": ["Happy", "Content", "Neutral", "Sad", "Stressed"]
+    },
+    {
+        "question": "Did you feel productive today?",
+        "options": ["Very productive", "Somewhat productive", "Neutral", "Not very productive", "Unproductive"]
+    }
+]

@@ -1,0 +1,10 @@
+# Quantified self Telegram bot
+
+This is a Telegram bot that allows you to track your daily activities and get statistics about them.
+
+## How to use
+
+1. Create a Telegram bot using [BotFather](https://t.me/botfather)
+2. Rename `sample_questions.json` to `questions.json` and fill it with your questions
+3. Add token to `.env` file (see `.env.sample`)
+4. Start the bot using `python3 bot.py`
