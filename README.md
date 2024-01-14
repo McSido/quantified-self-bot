@@ -7,7 +7,7 @@ This is a Telegram bot that allows you to track your daily activities and get st
 1. Create a Telegram bot using [BotFather](https://t.me/botfather)
 2. Rename `sample_questions.json` to `questions.json` and fill it with your questions
 3. Add token to `.env` file (see `.env.sample`)
-4. Add sqlite database path to `.env` file (see `.env.sample`)
+4. Add SQLite database path to `.env` file (see `.env.sample`)
 5. Add table name to `.env` file (see `.env.sample`)
 6. Install dependencies using `pip3 install -r requirements.txt`
 7. Start the bot using `python3 bot.py`
