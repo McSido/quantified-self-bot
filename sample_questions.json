@@ -5,5 +5,10 @@
     {
         "question": "Did you feel productive today?",
         "options": ["Very productive", "Somewhat productive", "Neutral", "Not very productive", "Unproductive"]
+    },
+    {
+        "question": "When did you drink coffee today?",
+        "options": ["Morning", "Afternoon", "Evening", "Night"],
+        "multiple": true
     }
 ]

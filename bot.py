@@ -68,6 +68,11 @@ class QuestionsBot:
             for option in question["options"]
         ]
 
+        # Add next button if question is multiple choice
+
+        if "multiple" in question and question["multiple"]:
+            options.append(InlineKeyboardButton("Next", callback_data="<next>"))
+
         # Make options nested by splitting into chunks of 3
         options = [options[i : i + 3] for i in range(0, len(options), 3)]
         # Create inline keyboard options
@@ -85,11 +90,20 @@ class QuestionsBot:
 
         user_response = query.data
         current_question = context.user_data["current_question"]
-
-        # Store in DB (implement actual DB logic)
         user_id = query.from_user.id
-        self._persist_response(user_id, current_question["question"], user_response)
 
+        is_multiple = "multiple" in current_question and current_question["multiple"]
+
+        if is_multiple:
+            if user_response != "<next>":
+                self._persist_response(
+                    user_id, current_question["question"], user_response
+                )
+                return RESPONSE
+        else:
+            self._persist_response(user_id, current_question["question"], user_response)
+
+        # Check if there are more questions
         if self._questions:
             return await self.ask_question(query, context)
         else:
