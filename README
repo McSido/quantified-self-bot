@@ -11,3 +11,13 @@ This is a Telegram bot that allows you to track your daily activities and get st
 5. Add table name to `.env` file (see `.env.sample`)
 6. Install dependencies using `pip3 install -r requirements.txt`
 7. Start the bot using `python3 bot.py`
+
+## Database structure
+
+The database contains one table with the following columns:
+
+* `id` - unique identifier of the record
+* `user_id` - Telegram user ID
+* `created_at` - date and time of the record creation
+* `question` - question text
+* `answer` - answer text

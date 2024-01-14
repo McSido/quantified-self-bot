@@ -6,7 +6,7 @@ class ResponseDatabase:
     """Database class.
     This class is used to store responses in a SQLite database.
     Table: responses
-    Columns: user_id, created_at, question, response
+    Columns: id, user_id, created_at, question, response
 
     """
 
@@ -23,7 +23,7 @@ class ResponseDatabase:
         conn = sqlite3.connect(self._DB_NAME)
         c = conn.cursor()
         c.execute(
-            f"CREATE TABLE IF NOT EXISTS {self._TABLE_NAME} (user_id INTEGER, created_at TEXT, question TEXT, response TEXT)"
+            f"CREATE TABLE IF NOT EXISTS {self._TABLE_NAME} (id INTEGER PRIMARY KEY AUTOINCREMENT, user_id INTEGER, created_at TEXT, question TEXT, response TEXT)"
         )
         conn.commit()
         conn.close()
@@ -44,7 +44,7 @@ class ResponseDatabase:
 
         c = self._connection.cursor()
         c.execute(
-            f"INSERT INTO {self._TABLE_NAME} VALUES (?, ?, ?, ?)",
+            f"INSERT INTO {self._TABLE_NAME} (user_id, created_at, question, response) VALUES (?, ?, ?, ?)",
             (user_id, created_at, question, response),
         )
         self._connection.commit()
