@@ -56,11 +56,12 @@ class QuestionsBot:
     async def start(self, update: Update, context: CallbackContext) -> int:
         """Send a message when the command /start is issued."""
         await update.message.reply_text("Hi! I will start asking you questions.")
+        context.user_data["questions"] = self._questions.copy()
         return await self.ask_question(update, context)
 
     async def ask_question(self, update: Update, context: CallbackContext) -> int:
         """Function to ask the next question with inline keyboard options."""
-        question = self._questions.pop(0)
+        question = context.user_data["questions"].pop(0)
         context.user_data["current_question"] = question
 
         options = [
@@ -104,7 +105,7 @@ class QuestionsBot:
             self._persist_response(user_id, current_question["question"], user_response)
 
         # Check if there are more questions
-        if self._questions:
+        if context.user_data["questions"]:
             return await self.ask_question(query, context)
         else:
             await query.message.reply_text("Thank you for answering all questions!")
